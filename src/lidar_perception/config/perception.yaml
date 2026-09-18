@@ -1,0 +1,33 @@
+lidar_perception:
+  ros__parameters:
+    input_topic: /points_raw
+    queue_depth: 5
+    publish_debug_clouds: true
+    voxel:
+      leaf_size: 0.15
+    roi:
+      min: [-30.0, -15.0, -2.5]
+      max: [60.0, 15.0, 5.0]
+    outlier:
+      method: none  # none, statistical, or radius
+      statistical_mean_k: 20
+      statistical_stddev: 1.0
+      radius_search: 0.4
+      radius_min_neighbors: 2
+    ground:
+      distance_threshold: 0.18
+      max_iterations: 100
+      max_angle_deg: 15.0
+    cluster:
+      tolerance: 0.55
+      min_size: 8
+      max_size: 20000
+    bbox:
+      oriented: true
+    tracking:
+      enabled: true
+      association_max_distance: 2.5
+      process_noise: 2.0
+      measurement_noise: 0.25
+      min_hits: 2
+      max_misses: 4

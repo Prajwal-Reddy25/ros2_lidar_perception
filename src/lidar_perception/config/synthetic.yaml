@@ -1,0 +1,10 @@
+synthetic_cloud_publisher:
+  ros__parameters:
+    topic: /points_raw
+    frame_id: lidar
+    rate_hz: 10.0
+    seed: 42
+    ground_points: 12000
+    points_per_object: 900
+    noise_stddev: 0.02
+    moving_objects: true

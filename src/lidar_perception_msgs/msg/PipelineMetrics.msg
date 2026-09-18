@@ -1,0 +1,9 @@
+std_msgs/Header header
+uint32 input_points
+uint32 filtered_points
+uint32 ground_points
+uint32 nonground_points
+uint32 cluster_count
+uint32 track_count
+float64 latency_ms
+float64 processing_hz

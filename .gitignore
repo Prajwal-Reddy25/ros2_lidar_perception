@@ -1,0 +1,11 @@
+build/
+install/
+log/
+.colcon/
+__pycache__/
+*.pyc
+*.orig
+.pytest_cache/
+.clangd/
+compile_commands.json
+results/
