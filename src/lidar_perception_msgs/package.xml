@@ -3,7 +3,7 @@
   <name>lidar_perception_msgs</name>
   <version>1.0.0</version>
   <description>Messages for clustered and tracked 3D LiDAR objects.</description>
-  <maintainer email="maintainers@example.com">ros2_lidar_perception maintainers</maintainer>
+  <maintainer email="prajwalhb31@gmail.com">Prajwal</maintainer>
   <license>MIT</license>
   <buildtool_depend>ament_cmake</buildtool_depend>
   <build_depend>rosidl_default_generators</build_depend>

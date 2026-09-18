@@ -2,7 +2,7 @@
 
 A production-oriented, hardware-independent 3D LiDAR obstacle pipeline for
 Ubuntu 24.04 and ROS 2 Jazzy. It consumes `sensor_msgs/PointCloud2`, produces
-ground/nonground clouds, clustered 3D boxes and centroids, optional stable track
+ground/nonground clouds, clustered 3D boxes and box centers, optional stable track
 IDs and velocities, RViz markers, standard diagnostics, and typed metrics.
 
 The hot path is C++17/PCL. A deterministic synthetic scene and PCD player make
@@ -15,7 +15,7 @@ the complete graph usable without LiDAR hardware.
 - Z-constrained RANSAC ground plane and nonground extraction
 - k-d-tree Euclidean clustering with size gates
 - axis-aligned or yaw-oriented PCA bounding boxes
-- centroid, dimensions, point count, and `vision_msgs/Detection3DArray`
+- box center, dimensions, point count, and `vision_msgs/Detection3DArray`
 - optional constant-velocity Kalman tracking with gated data association
 - debug clouds, RViz markers, standard `/diagnostics`, and frame metrics
 - deterministic synthetic publisher and ordered PCD playback
@@ -62,8 +62,9 @@ rosbag2, use normal `ros2 bag play` and remap its cloud topic to `/points_raw`.
 
 All algorithm settings are in
 [`perception.yaml`](src/lidar_perception/config/perception.yaml). Parameters can
-be changed at runtime; invalid values are rejected as a set, and accepted
-changes reset tracker state. Important choices are:
+be changed at runtime except for the subscription topic and queue depth, which
+are startup-only. Invalid updates are rejected as a set, and accepted updates
+reset tracker state. Important choices are:
 
 - `outlier.method`: `none`, `statistical`, or `radius`
 - `bbox.oriented`: PCA yaw box when true, AABB when false

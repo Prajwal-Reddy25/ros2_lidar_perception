@@ -36,7 +36,9 @@
 
 #include <algorithm>
 #include <cmath>
+#include <limits>
 #include <stdexcept>
+#include <utility>
 #include <vector>
 
 namespace lidar_perception

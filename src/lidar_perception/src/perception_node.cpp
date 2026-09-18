@@ -21,8 +21,12 @@
 
 #include <chrono>
 #include <cmath>
+#include <cstddef>
+#include <cstdint>
+#include <functional>
 #include <memory>
 #include <mutex>
+#include <stdexcept>
 #include <string>
 #include <utility>
 #include <vector>
@@ -58,6 +62,8 @@ public:
     queue_depth_ = declare_parameter<int>("queue_depth", 5);
     tracking_enabled_ = declare_parameter<bool>("tracking.enabled", true);
     publish_debug_clouds_ = declare_parameter<bool>("publish_debug_clouds", true);
+    if (input_topic_.empty()) {throw std::invalid_argument("input_topic must not be empty");}
+    if (queue_depth_ < 1) {throw std::invalid_argument("queue_depth must be positive");}
     processor_ = std::make_unique<Processor>(readPipelineConfig());
     tracker_ = std::make_unique<MultiObjectTracker>(readTrackerConfig());
 
@@ -208,6 +214,12 @@ private:
   {
     rcl_interfaces::msg::SetParametersResult result;
     result.successful = false;
+    for (const auto & parameter : updates) {
+      if (parameter.get_name() == "input_topic" || parameter.get_name() == "queue_depth") {
+        result.reason = parameter.get_name() + " cannot be changed after startup";
+        return result;
+      }
+    }
     try {
       auto pipeline = updatedPipelineConfig(updates);
       auto tracker_config = updatedTrackerConfig(updates);

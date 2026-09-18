@@ -22,6 +22,7 @@
 #include <algorithm>
 #include <chrono>
 #include <filesystem>
+#include <functional>
 #include <memory>
 #include <stdexcept>
 #include <string>

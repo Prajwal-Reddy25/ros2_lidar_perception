@@ -37,10 +37,14 @@ axis, project all cluster points into that yaw frame, take extrema there, and
 rotate the center back. This is a yaw-only PCA box, appropriate for road users;
 it is not a minimum-volume 3D box. Nearly circular clusters have ambiguous yaw.
 
+The published pose position is the center of the selected bounding box, not the
+arithmetic mean of the cluster points. The point mean is used only to estimate
+the principal XY axis for the yaw-oriented box.
+
 ## Tracking
 
 Each track models constant planar velocity. Prediction uses white-acceleration
-process noise; correction observes x/y centroids. Association constructs all
+process noise; correction observes x/y box centers. Association constructs all
 gated track/detection distances, sorts them, then greedily takes nonconflicting
 pairs. This is deterministic and adequate at modest object counts, but crowded
 scenes may warrant Hungarian/JV assignment with size, yaw, and class costs.

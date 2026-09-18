@@ -26,6 +26,7 @@
 #include <pcl/point_cloud.h>
 #include <pcl/point_types.h>
 
+#include <cstddef>
 #include <cstdint>
 #include <string>
 #include <vector>
