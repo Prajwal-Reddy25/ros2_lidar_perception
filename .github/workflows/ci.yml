@@ -7,12 +7,13 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-24.04
+
+    container:
+      image: rostooling/setup-ros-docker:ubuntu-noble-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: ros-tooling/setup-ros@v0.7
-        with:
-          required-ros-distributions: jazzy
-      - uses: ros-tooling/action-ros-ci@v0.4
+      - name: Build and test ROS 2 Jazzy
+        uses: ros-tooling/action-ros-ci@v0.4
         with:
           package-name: lidar_perception_msgs lidar_perception
           target-ros2-distro: jazzy
