@@ -1,5 +1,7 @@
 # ros2_lidar_perception
 
+[![ROS 2 Jazzy CI](https://github.com/Prajwal-Reddy25/ros2_lidar_perception/actions/workflows/ci.yml/badge.svg)](https://github.com/Prajwal-Reddy25/ros2_lidar_perception/actions/workflows/ci.yml)
+
 A production-oriented, hardware-independent 3D LiDAR obstacle pipeline for
 Ubuntu 24.04 and ROS 2 Jazzy. It consumes `sensor_msgs/PointCloud2`, produces
 ground/nonground clouds, clustered 3D boxes and box centers, optional stable track
@@ -34,6 +36,14 @@ source install/setup.bash
 ```
 
 ## Run without hardware
+
+## Demo
+
+![Synthetic 3D LiDAR perception pipeline in RViz](docs/evidence/rviz_synthetic.png)
+
+The deterministic synthetic scene exercises ground segmentation, Euclidean clustering,
+3D bounding-box estimation, and optional multi-object tracking without requiring
+physical LiDAR hardware.
 
 ```bash
 ros2 launch lidar_perception synthetic.launch.py rviz:=true
